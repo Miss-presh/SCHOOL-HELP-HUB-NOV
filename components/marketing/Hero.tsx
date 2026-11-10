@@ -1,7 +1,23 @@
 "use client";
 
 import { whatsappLink } from "@/lib/whatsapp";
-import Image from "next/image";
+import { getImageProps } from "next/image";
+
+const heroAlt = "Child in an online tutoring session while a parent works on a laptop";
+
+const {
+  props: { srcSet: heroDesktopSrcSet },
+} = getImageProps({ alt: heroAlt, src: "/Laptop.png", width: 1672, height: 941, sizes: "100vw" });
+
+const { props: heroMobileProps } = getImageProps({
+  alt: heroAlt,
+  src: "/phone.png",
+  width: 1086,
+  height: 1448,
+  sizes: "100vw",
+  loading: "eager",
+  fetchPriority: "high",
+});
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Globe, MessageCircle } from "lucide-react";
@@ -51,24 +67,13 @@ export default function Hero() {
             ease: "linear",
           }}
         >
-          {/* Portrait crop for mobile */}
-          <Image
-            src="/phone.png"
-            alt="Child in an online tutoring session while a parent works on a laptop"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover md:hidden"
-          />
-          {/* Landscape crop for tablet and desktop */}
-          <Image
-            src="/Laptop.png"
-            alt="Child in an online tutoring session while a parent works on a laptop"
-            fill
-            priority
-            sizes="100vw"
-            className="hidden md:block object-cover"
-          />
+          {/* Art direction: the browser downloads ONLY the crop that matches the screen
+              (portrait on phones, landscape from 768px up). */}
+          <picture>
+            <source media="(min-width: 768px)" srcSet={heroDesktopSrcSet} sizes="100vw" />
+            {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes from heroMobileProps */}
+            <img {...heroMobileProps} className="absolute inset-0 h-full w-full object-cover" />
+          </picture>
         </motion.div>
 
         {/* Brand overlay (matches the community hero) */}
