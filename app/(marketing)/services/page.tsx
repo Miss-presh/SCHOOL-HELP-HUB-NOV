@@ -127,7 +127,7 @@ export default function ServicesPage() {
           </p>
           <div className="pt-4">
             <Link 
-              href="/free-trial" 
+              href="/#book" 
               className="bg-brand-yellow hover:bg-brand-deepYellow text-brand-deepGreen font-bold px-8 py-3.5 rounded-xl text-sm transition-all duration-150 shadow-md-brand inline-block tap-target"
             >
               Configure Your Matching

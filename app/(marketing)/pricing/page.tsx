@@ -12,7 +12,7 @@ const tiers = [
   {
     name: "Group Primary",
     age: "Year 2–8 · Ages 6–13",
-    price: { NGN: "60,000", GBP: "30" },
+    price: { NGN: "60,000", GBP: "35" },
     highlight: "16+ hours/month · Mon–Thurs",
     description: "Build unshakeable foundations in Maths, English, Science and more with our small group classes.",
     features: [
@@ -23,7 +23,7 @@ const tiers = [
       "Parent dashboard access",
       "Mon–Thurs schedule",
     ],
-    cta: " Book a Free Academic Assessment",
+    cta: "Book a Free Assessment",
   },
   {
     name: "Group GCSE",
@@ -43,7 +43,7 @@ const tiers = [
   },
   {
     name: "1-on-1 Elite",
-    age: "All Ages · 5–16 Years",
+    age: "All Ages · 4–16 Years",
     price: { NGN: "120,000", GBP: "60" },
     highlight: "Custom schedule · Any subject",
     description: "A dedicated personal tutor matched to your child's exact needs, schedule, and learning style.",
@@ -55,7 +55,7 @@ const tiers = [
       "Detailed session reports",
       "Priority tutor matching",
     ],
-    cta: " Book a Free Academic Assessment",
+    cta: "Book a Free Assessment",
   },
 ];
 
@@ -85,19 +85,19 @@ export default function PricingPage() {
             <div className="inline-flex bg-white p-1 rounded-xl border border-brand-lightGreen shadow-sm">
               <button
                 onClick={() => setCurrency("NGN")}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
+                className={`flex items-center gap-2 min-h-11 px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 cursor-pointer ${
                   active === "NGN" ? "bg-brand-deepGreen text-white shadow-sm" : "text-brand-mutedSage hover:text-brand-deepGreen"
                 }`}
               >
-                🇳🇬 NGN (₦)
+                NGN (₦)
               </button>
               <button
                 onClick={() => setCurrency("GBP")}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold transition-all duration-200 cursor-pointer ${
+                className={`flex items-center gap-2 min-h-11 px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 cursor-pointer ${
                   active === "GBP" ? "bg-brand-deepGreen text-white shadow-sm" : "text-brand-mutedSage hover:text-brand-deepGreen"
                 }`}
               >
-                🇬🇧 GBP (£)
+                GBP (£)
               </button>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function PricingPage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-7">
           {tiers.map((tier, idx) => (
             <div key={idx} className="bg-brand-cream border border-brand-lightGreen p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-green/25 transition-all duration-300 flex flex-col">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-brand-mutedSage mb-1">{tier.age}</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-brand-mutedSage mb-1">{tier.age}</span>
               <h2 className="font-serif text-2xl font-bold text-brand-deepGreen mb-2">{tier.name}</h2>
               <p className="text-sm text-brand-mutedSage font-light mb-5 leading-relaxed">{tier.description}</p>
               <div className="flex items-baseline gap-1 pb-5 mb-5 border-b border-brand-lightGreen/60">

@@ -1,41 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { whatsappLink } from "@/lib/whatsapp";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
+import { ArrowRight, Globe, MessageCircle } from "lucide-react";
 
-
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 2200;
-          const increment = Math.max(1, Math.ceil(target / 80));
-          let current = 0;
-          const timer = setInterval(() => {
-            current = Math.min(current + increment, target);
-            setVal(current);
-            if (current >= target) clearInterval(timer);
-          }, duration / 80);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target]);
-
-  return <span ref={ref}>{val}{suffix}</span>;
-}
 
 const container: Variants = {
   hidden: {},
@@ -69,7 +39,7 @@ export default function Hero() {
 
       {/* Hero Image */}
 
-      <div className="relative h-[92vh] min-h-[760px]">
+      <div className="relative min-h-[92vh] lg:min-h-[760px]">
         <motion.div
           className="absolute inset-0"
           animate={{
@@ -81,17 +51,32 @@ export default function Hero() {
             ease: "linear",
           }}
         >
+          {/* Portrait crop for mobile */}
           <Image
-            src="/hub3.jpg"
-            alt="Parent working on a laptop at home"
+            src="/phone.png"
+            alt="Child in an online tutoring session while a parent works on a laptop"
             fill
             priority
+            sizes="100vw"
+            className="object-cover md:hidden"
+          />
+          {/* Landscape crop for tablet and desktop */}
+          <Image
+            src="/Laptop.png"
+            alt="Child in an online tutoring session while a parent works on a laptop"
+            fill
+            priority
+            sizes="100vw"
+            className="hidden md:block object-cover"
           />
         </motion.div>
 
+        {/* Brand overlay (matches the community hero) */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-brand-deepGreen/90 via-brand-deepGreen/75 to-brand-deepGreen/40" />
+
         {/* Content */}
 
-        <div className="relative z-20 max-w-7xl mx-auto h-full px-6 lg:px-10 flex items-center">
+        <div className="relative z-20 max-w-7xl mx-auto min-h-[92vh] lg:min-h-[760px] px-6 lg:px-10 pt-28 pb-24 flex items-center">
 
           <motion.div
             variants={container}
@@ -100,236 +85,102 @@ export default function Hero() {
             className="max-w-2xl text-white"
           >
 
+            {/* Eyebrow */}
             <motion.div
               variants={fadeUp}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2"
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2 text-xs sm:text-sm font-semibold tracking-widest uppercase"
             >
-              ⭐
-              <span className="text-sm">
-                Trusted by families in the UK, USA, Nigeria, Canada & UAE
-              </span>
+              <Globe size={16} className="text-brand-yellow shrink-0" aria-hidden="true" />
+              <span>Live Online Tutoring</span>
+              <span className="text-white/40" aria-hidden="true">|</span>
+              <span>Ages 4 - 16</span>
             </motion.div>
 
+            {/* Headline */}
             <motion.h1
               variants={fadeUp}
               className="mt-8 font-serif text-5xl lg:text-7xl font-bold leading-tight"
             >
-              Where Confidence
-              <br />
-              Meets
-              <span className="block text-yellow-300">
-                Academic Success
+              Better results.
+              <span className="block text-brand-yellow">
+                Greater confidence.
               </span>
             </motion.h1>
 
+            {/* Subheading */}
             <motion.p
               variants={fadeUp}
-              className="mt-6 text-xl text-white/90 leading-8 max-w-xl"
+              className="mt-6 text-lg sm:text-xl text-white/90 leading-8 max-w-xl"
             >
-              Live online tuition for children aged 4–16 delivered by experienced tutors
-              in Maths, English, Science, SATs, GCSE, IGCSE and 11+ preparation.
+              Structured small-group classes (max 6) and one-to-one tutoring that
+              close learning gaps, build real understanding, and keep your child ahead.
             </motion.p>
 
+            {/* Buttons */}
             <motion.div
               variants={fadeUp}
               className="mt-10 flex flex-wrap gap-4"
             >
-
               <Link
                 href="/#book"
-                className="bg-yellow-400 hover:bg-yellow-300 hover:scale-105 transition-all duration-300 text-black rounded-xl px-8 py-4 font-semibold shadow-xl"
+                className="bg-brand-yellow hover:bg-brand-deepYellow hover:scale-105 transition-all duration-300 text-black rounded-xl px-8 py-4 font-semibold shadow-xl"
               >
-                Book A Free Academic Assessment
+                Book a Free Assessment
               </Link>
 
+              <a
+                href={whatsappLink("Hi Schoolhelphub, I'd like to find out more about tutoring for my child.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-white/40 backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 font-semibold"
+              >
+                <MessageCircle size={20} aria-hidden="true" />
+                Chat on WhatsApp
+              </a>
+            </motion.div>
+
+            {/* Price line */}
+            <motion.div variants={fadeUp} className="mt-6">
               <Link
-                href="#"
-                className="border border-white/40 backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 font-semibold"
+                href="/pricing"
+                className="group inline-flex items-center gap-2 min-h-11 text-white/90 hover:text-white transition-colors"
               >
-                View Programmes
+                Plans from
+                <span className="font-semibold text-brand-yellow">£35 / ₦60,000</span>
+                per month
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
+            </motion.div>
 
+            {/* Proof line */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-10 inline-flex flex-col items-center text-center rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 px-6 py-6 sm:px-8"
+            >
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                {["UK", "US", "CA", "NG", "UAE"].map((code) => (
+                  <span
+                    key={code}
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#E8F2EC] text-brand-deepGreen flex items-center justify-center text-sm sm:text-base font-bold shadow-md"
+                  >
+                    {code}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-4 text-xl sm:text-2xl font-bold">
+                Trusted by 150+ families
+              </p>
+              <p className="mt-1 text-sm sm:text-base text-white/75">
+                Across the UK, USA, Canada, Nigeria, UAE and beyond.
+              </p>
             </motion.div>
 
           </motion.div>
 
         </div>
 
-        {/* Pricing */}
+      </div>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: 80
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            y: [0, -8, 0]
-          }}
-          transition={{
-            opacity: {
-              delay: 1.2,
-              duration: .6
-            },
-            x: {
-              delay: 1.2,
-              duration: .6
-            },
-            y: {
-              repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut"
-            }
-          }}
-          className="absolute top-16 right-10 bg-white rounded-3xl shadow-2xl p-6 hidden xl:block"
-        >
-          <p className="uppercase text-xs tracking-widest text-gray-500">
-
-            Sessions From
-
-          </p>
-
-          <h2 className="text-4xl font-bold text-brand-deepGreen">
-
-            ₦60,000
-
-            <span className="text-lg text-gray-500">
-
-              /month
-
-            </span>
-
-          </h2>
-
-          <p className="text-gray-500 text-sm">
-
-            Flexible Monthly Plans
-
-          </p>
-
-        </motion.div >
-
-      </div >
-
-      {/* Bottom Trust Bar */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 60,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: .8,
-        }}
-        className="bg-white shadow-xl relative z-30 -mt-10 rounded-3xl max-w-6xl mx-auto px-10 py-8"
-      >
-        <div className="grid lg:grid-cols-4 gap-8">
-
-          <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.05,
-            }}
-            transition={{
-              duration: .25,
-            }}
-          >
-            <h3 className="text-4xl font-bold text-brand-deepGreen">
-
-              <CountUp target={10} suffix="+" />
-
-            </h3>
-
-            <p className="font-semibold mt-2">
-
-              Years Teaching Experience
-
-            </p>
-
-          </motion.div>
-
-          <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.05,
-            }}
-            transition={{
-              duration: .25,
-            }}
-          >
-            <h3 className="text-4xl font-bold text-brand-deepGreen">
-
-              <CountUp target={1600} suffix="+" />
-
-            </h3>
-
-            <p className="font-semibold mt-2">
-
-              Live Lessons Monthly
-
-            </p>
-
-          </motion.div>
-
-          <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.05,
-            }}
-            transition={{
-              duration: .25,
-            }}
-          >
-            <h3 className="text-4xl font-bold text-brand-deepGreen">
-
-              <CountUp target={200} suffix="+" />
-
-            </h3>
-
-            <p className="font-semibold mt-2">
-
-              Students Supported
-
-            </p>
-
-          </motion.div>
-
-          <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.05,
-            }}
-            transition={{
-              duration: .25,
-            }}
-          >
-
-            <h3 className="text-4xl font-bold text-brand-deepGreen">
-
-              <CountUp target={50} suffix="+" />
-
-            </h3>
-
-            <p className="font-semibold mt-2">
-
-              Qualified Tutors
-
-            </p>
-
-          </motion.div>
-
-        </div>
-
-      </motion.div >
-
-    </section >
+    </section>
   );
 }

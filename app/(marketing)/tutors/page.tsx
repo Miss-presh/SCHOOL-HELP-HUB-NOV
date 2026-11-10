@@ -30,7 +30,7 @@ export default function EnhancedTutorsPage() {
     {
       name: "Michelle Kayode, MSc",
       title: "Advanced STEM Discipline Specialist",
-      credentials: "BSc Biomedical Sciences, MSc Biochemistry (King&apos;s College London)",
+      credentials: "BSc Biomedical Sciences, MSc Biochemistry (King's College London)",
       experience: "6+ Years Specialized Tutoring • Separate & Combined Sciences Board Specialist",
       bio: "Michelle utilizes interactive digital mockups to make chemistry and physics deeply understandable, preparing secondary students for elite exam performance.",
       image: "https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?auto=format&fit=crop&w=400&h=500&q=80",
@@ -138,12 +138,7 @@ export default function EnhancedTutorsPage() {
                   <p className="text-xs sm:text-sm text-brand-mutedSage leading-relaxed italic pt-1">
                     &ldquo;{tutor.bio}&rdquo;
                   </p>
-                ) : (
-                  <div className="space-y-2 pt-2 max-w-xl">
-                    <div className="h-3 w-full bg-gradient-to-r from-brand-cream via-brand-lightGreen/40 to-brand-cream bg-[length:200%_100%] animate-shimmer rounded" />
-                    <div className="h-3 w-5/6 bg-gradient-to-r from-brand-cream via-brand-lightGreen/40 to-brand-cream bg-[length:200%_100%] animate-shimmer rounded" />
-                  </div>
-                )}
+                ) : null}
               </div>
             </div>
           ))}
@@ -161,7 +156,7 @@ export default function EnhancedTutorsPage() {
           </p>
           <div className="pt-4">
             <Link 
-              href="/free-trial" 
+              href="/#book" 
               className="bg-brand-yellow hover:bg-brand-deepYellow text-brand-deepGreen font-bold px-8 py-4 rounded-xl text-sm transition-all duration-300 shadow-md-brand inline-block transform hover:-translate-y-0.5 active:translate-y-0 tap-target"
             >
               Request Custom Tutor Matching

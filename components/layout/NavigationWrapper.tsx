@@ -1,5 +1,6 @@
 "use client";
 
+import { whatsappLink } from "@/lib/whatsapp";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,7 +16,7 @@ const navLinks = [
   },
   {
     name: "Programmes",
-    href: "/#programmes",
+    href: "/programmes",
   },
   {
     name: "Tutors",
@@ -74,12 +75,12 @@ export function NavigationWrapper() {
         })}
       </nav>
 
-      {/*  Book a Free Academic Assessment CTA */}
+      {/* Book a Free Assessment CTA */}
       <Link
         href="/#book"
         className="hidden sm:inline-flex items-center gap-2 bg-brand-yellow hover:bg-brand-deepYellow text-brand-deepGreen font-bold px-5 py-2.5 rounded-xl text-sm transition-all duration-150 shadow-md shadow-brand-yellow/20 hover:-translate-y-0.5 tap-target whitespace-nowrap"
       >
-        Book A Free Academic Assessment →
+        Book a Free Assessment →
       </Link>
 
       {/* Mobile burger */}
@@ -118,10 +119,10 @@ export function NavigationWrapper() {
               onClick={() => setOpen(false)}
               className="block w-full bg-brand-yellow hover:bg-brand-deepYellow text-brand-deepGreen font-bold py-3.5 rounded-xl text-center text-sm tap-target"
             >
-              📚 Book A Free Academic Assessment
+              Book a Free Assessment
             </Link>
             <a
-              href="https://wa.me/2347043523556?text=Hi%20Schoolhelphub%2C%20I%27d%20like%20to%20book%20a%20free%20trial."
+              href={whatsappLink("Hi Schoolhelphub, I'd like to book a free assessment for my child.")}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}

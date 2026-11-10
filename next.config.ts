@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // The old /free-trial form never submitted anywhere; send visitors to the real booking form.
+      { source: "/free-trial", destination: "/#book", permanent: false },
+    ];
+  },
   images: {
     remotePatterns: [
       {

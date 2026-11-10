@@ -1,84 +1,87 @@
-"use client";
+import Link from "next/link";
+import { ArrowRight, Quote } from "lucide-react";
 
+// TODO (client): confirm each quote and result is genuine and that the parent
+// has agreed to it being used. Add `photo` support here if real photos are supplied.
 const testimonials = [
   {
-    quote: "The session reports changed everything for us. I finally know exactly what my daughter is working on every week. Her WAEC grades jumped from E8 to B2 in just two terms.",
+    quote:
+      "The session reports changed everything for us. I finally know exactly what my daughter is working on every week. Her WAEC grades jumped from E8 to B2 in two terms.",
     name: "Mrs. Temi Adeleke",
-    meta: "Parent · Lagos, Nigeria · Year 10 Student",
+    meta: "Parent · Lagos, Nigeria · Year 10",
     initials: "TA",
     avatarColor: "from-brand-green to-brand-midGreen",
-    flag: "🇳🇬",
   },
   {
-    quote: "Finding quality UK-style tutoring in Texas felt impossible until Schoolhelphub. The tutors are exceptional and my son genuinely looks forward to his sessions every week.",
+    quote:
+      "Finding quality UK-style tutoring in Texas felt impossible until Schoolhelphub. My son genuinely looks forward to his sessions every week.",
     name: "Marcus K.",
-    meta: "Parent · Texas, USA · IGCSE Student",
+    meta: "Parent · Texas, USA · IGCSE",
     initials: "MK",
-    avatarColor: "from-amber-500 to-yellow-400",
-    flag: "🇺🇸",
+    avatarColor: "from-brand-deepYellow to-brand-yellow",
   },
   {
-    quote: "My son went from dreading maths to actually enjoying it. The detailed reports keep us in the loop at every step, and the 11+ prep was absolutely spot on.",
+    quote:
+      "My son went from dreading maths to actually enjoying it. The detailed reports keep us in the loop, and the 11+ prep was spot on.",
     name: "Funmi Okafor",
-    meta: "Parent · Manchester, UK · Year 5 Student",
+    meta: "Parent · Manchester, UK · Year 5",
     initials: "FO",
     avatarColor: "from-brand-deepGreen to-brand-green",
-    flag: "🇬🇧",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-10 bg-brand-faintGreen px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-4 reveal">
-          <span className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-midGreen bg-brand-lightGreen px-4 py-1.5 rounded-full border border-brand-green/10">
-            <span className="w-4 h-px bg-brand-midGreen" />
-            What Parents Say
-            <span className="w-4 h-px bg-brand-midGreen" />
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-deepGreen">
-            Trusted by Families<br />
-            Across <em className="italic text-brand-midGreen">Nigeria, UK & US</em>
+    <section id="parent-stories" className="py-20 lg:py-28 bg-brand-faintGreen px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-sm font-semibold tracking-widest uppercase text-brand-green">
+            What parents say
+          </p>
+          <h2 className="mt-4 font-serif text-4xl lg:text-6xl font-bold text-brand-deepGreen leading-tight">
+            From the First Lesson to Real Progress.
           </h2>
-          <p className="text-brand-mutedSage font-light text-base">
-            Real results, honest feedback from parents who&apos;ve seen the difference.
+          <p className="mt-5 text-lg text-brand-mutedSage leading-8">
+            Parents share their experience from the very beginning, from children enjoying
+            their first lessons to growing confidence and real academic progress.
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className={`reveal delay-${(i + 1) * 100} bg-white rounded-2xl p-7 border border-brand-lightGreen/80 shadow-sm hover:-translate-y-1 hover:shadow-md hover:shadow-brand-green/8 transition-all duration-300 flex flex-col`}
+        <ul className="mt-12 grid md:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <li
+              key={t.name}
+              className="flex flex-col rounded-3xl bg-white border border-brand-lightGreen p-7 shadow-sm-brand"
             >
-              {/* Stars */}
-              <div className="text-brand-yellow text-base tracking-widest mb-4">★★★★★</div>
-
-              {/* Quote */}
-              <p className="text-brand-textNearBlack text-sm leading-relaxed italic flex-grow mb-6">
-                {t.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-5 border-t border-brand-faintGreen">
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.avatarColor} flex items-center justify-center font-serif font-bold text-white text-sm flex-shrink-0`}>
+              <Quote size={28} className="text-brand-yellow" aria-hidden="true" />
+              <blockquote className="mt-4 flex-grow text-brand-textNearBlack leading-7">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <div className="mt-6 pt-5 border-t border-brand-lightGreen flex items-center gap-3">
+                <div
+                  className={`w-11 h-11 rounded-full bg-gradient-to-br ${t.avatarColor} flex items-center justify-center font-serif font-bold text-white flex-shrink-0`}
+                  aria-hidden="true"
+                >
                   {t.initials}
                 </div>
                 <div>
-                  <p className="font-bold text-brand-deepGreen text-sm flex items-center gap-1.5">
-                    {t.name} <span>{t.flag}</span>
-                  </p>
-                  <p className="text-brand-mutedSage text-xs mt-0.5">{t.meta}</p>
+                  <p className="font-bold text-brand-deepGreen">{t.name}</p>
+                  <p className="text-sm text-brand-mutedSage">{t.meta}</p>
                 </div>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
+        <div className="mt-10 text-center">
+          <Link
+            href="/testimonials"
+            className="group inline-flex items-center gap-2 min-h-11 text-sm font-bold uppercase tracking-widest text-brand-green hover:text-brand-midGreen"
+          >
+            Read more parent stories
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -123,10 +123,10 @@ export default function AboutPage() {
 
               <div>
                 <p className="text-5xl font-serif font-bold text-brand-green">
-                  200+
+                  150+
                 </p>
                 <p className="text-brand-mutedSage mt-2">
-                  Students supported across Nigeria and the UK.
+                  Families supported across the UK, USA, Canada, Nigeria, UAE and beyond.
                 </p>
               </div>
 
@@ -244,7 +244,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-4 gap-6">
 
             {[
-              ["200+", "Students Supported"],
+              ["150+", "Families Supported"],
               ["50+", "Qualified Tutors"],
               ["1,600+", "Lessons Every Month"],
               ["10+", "Years Teaching Experience"],

@@ -1,5 +1,6 @@
 "use client";
 
+import { whatsappLink } from "@/lib/whatsapp";
 import React, { useState, useEffect } from "react";
 
 const SUBJECT_OPTIONS = [
@@ -109,7 +110,7 @@ export default function ContactPage() {
                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-xl shadow-sm border border-brand-lightGreen flex-shrink-0">✉️</div>
                 <div>
                   <p className="font-bold text-brand-deepGreen text-sm">Email</p>
-                  <a href="mailto:support@schoolhelphub.com" className="text-xs text-brand-midGreen hover:underline mt-1 block">
+                  <a href="mailto:support@schoolhelphub.com" className="text-sm text-brand-midGreen hover:underline mt-1 inline-flex items-center min-h-11">
                     support@schoolhelphub.com
                   </a>
                 </div>
@@ -119,7 +120,7 @@ export default function ContactPage() {
                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-xl shadow-sm border border-brand-lightGreen flex-shrink-0">📞</div>
                 <div>
                   <p className="font-bold text-brand-deepGreen text-sm">Phone / WhatsApp</p>
-                  <a href="tel:+2347043523556" className="text-xs text-brand-midGreen hover:underline mt-1 block">
+                  <a href="tel:+2347043523556" className="text-sm text-brand-midGreen hover:underline mt-1 inline-flex items-center min-h-11">
                     +234 704 352 3556
                   </a>
                 </div>
@@ -134,7 +135,7 @@ export default function ContactPage() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/2347043523556?text=Hi%20Schoolhelphub%2C%20I%27d%20like%20to%20get%20in%20touch."
+              href={whatsappLink("Hi Schoolhelphub, I'd like to get in touch.")}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-6 py-4 rounded-xl text-sm transition-all duration-200 shadow-md hover:-translate-y-0.5 tap-target"
@@ -168,17 +169,17 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-brand-green">Full Name</label>
+                      <label className="text-xs font-bold uppercase tracking-widest text-brand-green">Full Name</label>
                       <input required type="text" placeholder="e.g. Temi Adeleke" value={form.name} onChange={set("name")} className={inputClass} />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-brand-green">Email Address</label>
+                      <label className="text-xs font-bold uppercase tracking-widest text-brand-green">Email Address</label>
                       <input required type="email" placeholder="you@email.com" value={form.email} onChange={set("email")} className={inputClass} />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-green">Subject</label>
+                    <label className="text-xs font-bold uppercase tracking-widest text-brand-green">Subject</label>
                     <select required value={form.subject} onChange={set("subject")} className={inputClass}>
                       <option value="">Select a subject...</option>
                       {SUBJECT_OPTIONS.map((o) => <option key={o}>{o}</option>)}
@@ -186,7 +187,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-green">Your Message</label>
+                    <label className="text-xs font-bold uppercase tracking-widest text-brand-green">Your Message</label>
                     <textarea required rows={5} placeholder="Tell us how we can help..." value={form.message} onChange={set("message")} className={inputClass} />
                   </div>
 
