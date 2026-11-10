@@ -5,7 +5,8 @@ Both website forms save to one Google Sheet through a Google Apps Script web app
 - the **booking form** on the homepage (`/api/book-trial`)
 - the **contact form** on `/contact` (`/api/contact`)
 
-The **Source** column tells you which form each row came from. No extra npm packages are needed.
+Bookings land in the **Bookings** tab and contact messages in the **Contact Messages** tab.
+Both tabs and their headers are created automatically. No extra npm packages are needed.
 
 > The web app link does not expire. It stops working only if the deployment is archived
 > or deleted, the script or sheet is deleted, or the owning Google account loses access.
@@ -19,7 +20,7 @@ The **Source** column tells you which form each row came from. No extra npm pack
 1. Sign in to the Google account that should own the bookings (ideally a shared business account, not a personal one).
 2. Go to **sheets.google.com** and create a blank spreadsheet. Name it e.g. **Schoolhelphub Bookings**.
 
-You don't need to add a tab or headers: the script creates the **Enquiries** tab and its header row on the first submission.
+You don't need to add tabs or headers: the script creates the **Bookings** and **Contact Messages** tabs and their header rows on the first submission of each.
 
 ---
 
@@ -30,55 +31,58 @@ You don't need to add a tab or headers: the script creates the **Enquiries** tab
 
 ```javascript
 // Schoolhelphub website → Google Sheet
+// Bookings and contact messages go to separate tabs (created automatically).
 // Optional: put an email address here to get an alert for every new submission.
 var NOTIFY_EMAIL = ""; // e.g. "hello@schoolhelphub.com"
 
-var HEADERS = [
-  "Submitted At", "Source", "Parent Name", "Email", "Phone",
-  "Year Group", "Subjects", "Country", "Message",
-];
+var TABS = {
+  booking: {
+    name: "Bookings",
+    headers: ["Submitted At", "Parent Name", "Email", "Phone", "Year Group", "Subjects", "Country", "Message"],
+    row: function (d) { return [d.parentName, d.email, d.phone, d.childAge, d.subject, d.country, d.message]; },
+  },
+  contact: {
+    name: "Contact Messages",
+    headers: ["Submitted At", "Name", "Email", "Subject", "Message"],
+    row: function (d) { return [d.parentName, d.email, d.subject, d.message]; },
+  },
+};
 
-function getSheet_() {
+function getTab_(tab) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName("Enquiries") || ss.insertSheet("Enquiries");
+  var sheet = ss.getSheetByName(tab.name) || ss.insertSheet(tab.name);
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS);
-    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
+    sheet.appendRow(tab.headers);
+    sheet.getRange(1, 1, 1, tab.headers.length).setFontWeight("bold");
     sheet.setFrozenRows(1);
+    // Store every column except the date as plain text (keeps "+234…" and leading zeros intact).
+    sheet.getRange(2, 2, sheet.getMaxRows() - 1, tab.headers.length - 1).setNumberFormat("@");
   }
   return sheet;
+}
+
+// Visitor text is saved as plain text, never as a formula (blocks "=…" formula injection).
+function text_(v) {
+  var s = v == null ? "" : String(v);
+  return /^[=+\-@]/.test(s) ? "'" + s : s;
 }
 
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
-    var source = data.source === "contact-form" ? "Contact form" : "Booking form";
+    var isContact = data.source === "contact-form";
+    var tab = isContact ? TABS.contact : TABS.booking;
+    var submitted = data.submittedAt ? new Date(data.submittedAt) : new Date();
 
-    getSheet_().appendRow([
-      data.submittedAt || new Date().toISOString(),
-      source,
-      data.parentName || "",
-      data.email || "",
-      data.phone || "",
-      data.childAge || "",   // year group, e.g. "Year 5"
-      data.subject || "",    // booking form: subjects joined, e.g. "Maths, English"
-      data.country || "",
-      data.message || "",
-    ]);
+    getTab_(tab).appendRow([submitted].concat(tab.row(data).map(text_)));
 
     if (NOTIFY_EMAIL) {
       MailApp.sendEmail({
         to: NOTIFY_EMAIL,
-        subject: "New Schoolhelphub " + source.toLowerCase() + ": " + (data.parentName || ""),
-        body: [
-          "Name: " + (data.parentName || ""),
-          "Email: " + (data.email || ""),
-          "Phone: " + (data.phone || ""),
-          "Year group: " + (data.childAge || ""),
-          "Subjects: " + (data.subject || ""),
-          "Country: " + (data.country || ""),
-          "Message: " + (data.message || ""),
-        ].join("\n"),
+        subject: (isContact ? "New contact message: " : "New booking: ") + (data.parentName || ""),
+        body: tab.headers.slice(1).map(function (h, i) {
+          return h + ": " + (tab.row(data)[i] || "");
+        }).join("\n"),
       });
     }
 
@@ -135,7 +139,8 @@ This keeps the same URL. "New deployment" creates a *new* URL and the site keeps
 
 ## Testing
 
-Submit the booking form. Within a few seconds a row should appear in the **Enquiries** tab.
+Submit the booking form. Within a few seconds a row should appear in the **Bookings** tab
+(contact form submissions go to **Contact Messages**).
 If it doesn't:
 
 1. Browser **Network** tab → the `/api/book-trial` request should return `{ "success": true }`.
