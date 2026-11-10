@@ -161,8 +161,8 @@
   .animate-slideInRight    { animation: slideInRight 0.55s cubic-bezier(.22,1,.36,1) both; }
 }
 
-/* Fonts are loaded by next/font in app/layout.tsx (self-hosted, no layout shift). */
+/* Brand fonts are self-hosted via @fontsource-variable (imported in app/layout.tsx). */
 @theme inline {
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
 }
