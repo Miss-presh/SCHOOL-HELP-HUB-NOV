@@ -33,14 +33,15 @@ export default function Footer() {
 
           {/* Brand + tagline + countries */}
           <div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-yellow flex items-center justify-center font-serif font-bold text-brand-deepGreen">
-                S
-              </div>
-              <span className="font-serif text-2xl font-bold">
-                School<span className="text-brand-yellow font-light">help</span>hub
-              </span>
-            </div>
+            <Link href="/" className="inline-flex min-h-11 items-center">
+              <Image
+                src="/shh-logo.png"
+                alt="Schoolhelphub home"
+                width={715}
+                height={166}
+                className="h-12 w-auto"
+              />
+            </Link>
             <p className="mt-5 text-white/70 leading-8 max-w-md">
               Live online tutoring helping children across the UK, USA, Canada, Nigeria
               and the UAE build confidence, improve results and prepare for important exams.
