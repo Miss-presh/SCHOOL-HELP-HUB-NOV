@@ -51,37 +51,34 @@ const fadeUp: Variants = {
 export default function Hero() {
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-brand-deepGreen">
 
-      {/* Hero Image */}
+      {/* Hero Image
+          Phones: the portrait photo is shown whole (3:4, uncropped) at the top so the child,
+          parent and tutor on screen are all visible, fading into green under the text.
+          768px+: the landscape photo fills the hero behind the text, with a slow zoom. */}
 
-      <div className="relative min-h-[92vh] lg:min-h-[760px]">
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {/* Art direction: the browser downloads ONLY the crop that matches the screen
-              (portrait on phones, landscape from 768px up). */}
-          <picture>
-            <source media="(min-width: 768px)" srcSet={heroDesktopSrcSet} sizes="100vw" />
-            {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes from heroMobileProps */}
-            <img {...heroMobileProps} className="absolute inset-0 h-full w-full object-cover" />
-          </picture>
-        </motion.div>
+      <div className="relative md:min-h-[92vh] lg:min-h-[760px]">
+        <div className="relative aspect-[3/4] w-full overflow-hidden md:absolute md:inset-0 md:aspect-auto">
+          <div className="absolute inset-0 md:animate-[hero-zoom_18s_linear_infinite]">
+            {/* Art direction: the browser downloads ONLY the photo that matches the screen. */}
+            <picture>
+              <source media="(min-width: 768px)" srcSet={heroDesktopSrcSet} sizes="100vw" />
+              {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes from heroMobileProps */}
+              <img {...heroMobileProps} className="absolute inset-0 h-full w-full object-cover" />
+            </picture>
+          </div>
 
-        {/* Brand overlay (matches the community hero) */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-brand-deepGreen/90 via-brand-deepGreen/75 to-brand-deepGreen/40" />
+          {/* Phones: light tint + fade into the green content area below */}
+          <div className="absolute inset-0 md:hidden bg-gradient-to-b from-brand-deepGreen/20 via-transparent via-55% to-brand-deepGreen" />
+        </div>
+
+        {/* 768px+: brand overlay behind the text (matches the community hero) */}
+        <div className="hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-brand-deepGreen/90 via-brand-deepGreen/75 to-brand-deepGreen/40" />
 
         {/* Content */}
 
-        <div className="relative z-20 max-w-7xl mx-auto min-h-[92vh] lg:min-h-[760px] px-6 lg:px-10 pt-28 pb-24 flex items-center">
+        <div className="relative z-20 max-w-7xl mx-auto -mt-16 px-6 pb-20 md:mt-0 md:min-h-[92vh] lg:min-h-[760px] lg:px-10 md:pt-28 md:pb-24 flex items-center">
 
           <motion.div
             variants={container}

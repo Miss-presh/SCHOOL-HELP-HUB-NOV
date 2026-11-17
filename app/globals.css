@@ -166,3 +166,12 @@
   --font-serif: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
   --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
 }
+
+/* Hero photo slow zoom (tablet/desktop only; applied with md:animate-[hero-zoom_18s_linear_infinite]) */
+@keyframes hero-zoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .md\:animate-\[hero-zoom_18s_linear_infinite\] { animation: none !important; }
+}
