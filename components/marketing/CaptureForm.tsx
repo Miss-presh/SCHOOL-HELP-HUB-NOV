@@ -159,8 +159,8 @@ export default function CaptureForm() {
             Book your child&apos;s free assessment
           </h2>
           <p className="mt-5 text-lg text-brand-mutedSage leading-8">
-            45 minutes with a qualified tutor and a written report afterwards. No payment,
-            no commitment.
+            Your child meets a qualified tutor, and you receive a written report on their
+            strengths, learning gaps and next steps. No payment, no commitment.
           </p>
 
           <div className="mt-8 rounded-2xl bg-white border border-brand-lightGreen p-5">

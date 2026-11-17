@@ -282,7 +282,7 @@ export default function AboutPage() {
             <em className="italic text-brand-yellow">Child&apos;s Tutor?</em>
           </h2>
           <p className="text-white/65 text-sm font-light max-w-lg mx-auto leading-relaxed">
-            Book a free 45-minute trial session today. No payment needed. Full written report included.
+            Book your child&apos;s free assessment today. No payment needed. Written report included.
           </p>
           <Link
             href="/#book"
