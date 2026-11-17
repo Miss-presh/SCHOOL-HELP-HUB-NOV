@@ -1,7 +1,17 @@
 "use client";
 
 import { whatsappLink } from "@/lib/whatsapp";
-import { getImageProps } from "next/image";
+import Image, { getImageProps } from "next/image";
+
+// Circle crops a 2:1 flag to its middle; US and UAE keep their left side in view
+// so the stars / red band stay visible.
+const heroFlags = [
+  { code: "gb", name: "United Kingdom", position: "object-center" },
+  { code: "us", name: "United States", position: "object-left" },
+  { code: "ca", name: "Canada", position: "object-center" },
+  { code: "ng", name: "Nigeria", position: "object-center" },
+  { code: "ae", name: "United Arab Emirates", position: "object-left" },
+];
 
 const heroAlt = "Child in an online tutoring session while a parent works on a laptop";
 
@@ -160,12 +170,20 @@ export default function Hero() {
               className="mt-10 inline-flex flex-col items-center text-center rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 px-6 py-6 sm:px-8"
             >
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                {["UK", "US", "CA", "NG", "UAE"].map((code) => (
+                {heroFlags.map((f) => (
                   <span
-                    key={code}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#E8F2EC] text-brand-deepGreen flex items-center justify-center text-sm sm:text-base font-bold shadow-md"
+                    key={f.code}
+                    className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden ring-2 ring-white/80 shadow-md bg-white"
                   >
-                    {code}
+                    <Image
+                      src={`/flags/${f.code}.svg`}
+                      alt={f.name}
+                      title={f.name}
+                      fill
+                      sizes="56px"
+                      unoptimized
+                      className={`object-cover ${f.position}`}
+                    />
                   </span>
                 ))}
               </div>
