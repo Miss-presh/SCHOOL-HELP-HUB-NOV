@@ -9,10 +9,10 @@ const faqs = [
   {
     question: "How do online lessons work?",
     answer:
-      "Lessons take place live on Zoom or Google Meet with experienced tutors. Students interact in real time, ask questions and get support just like in a physical classroom.",
+      "Lessons take place live on Google Meet with experienced tutors. Students interact in real time, ask questions and get support just like in a physical classroom.",
   },
   {
-    question: "How many students are in each class?",
+    question: "How many students are in each group class?",
     answer:
       "A maximum of six, so every child gets individual attention while still learning with others.",
   },

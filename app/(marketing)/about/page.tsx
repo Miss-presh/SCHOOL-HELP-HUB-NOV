@@ -31,9 +31,9 @@ const standards = [
   },
   {
     number: "05",
-    title: "Written Progress Report",
+    title: "Weekly Progress Report",
     body:
-      "Parents receive a report after every lesson explaining what was taught, progress made and what comes next.",
+      "Every week, parents receive a written report that highlights what was covered that week, how their child is progressing and what comes next.",
   },
   {
     number: "06",
@@ -46,8 +46,8 @@ const standards = [
 const values = [
   {
     icon: "📋",
-    title: "Written Report After Every Session",
-    desc: "Every lesson ends with a detailed written report, what was covered, how your child performed, and exactly what to work on next. You are never left guessing.",
+    title: "A Written Report Every Week",
+    desc: "Each week you receive a written report covering what your child learned that week, how they are getting on and what to focus on next. You are never left guessing.",
   },
   {
     icon: "👩🏾‍🏫",

@@ -18,8 +18,8 @@ export default function FAQPage() {
       answer: "Once you fill out our 6-field evaluation request, an academic board coordinator reads your target milestone criteria and maps your profile. We hand-select and match your student with their perfect educator within 4 to 12 hours.",
     },
     {
-      question: "What exactly is included in the post-lesson micro-analytics logs?",
-      answer: "Transparency is our primary standard. Within 15 minutes of every single lesson concluding, a comprehensive progress breakdown is pushed to your dashboard. This includes focus metrics, curriculum synchronization targets, and clear actionable homework parameters.",
+      question: "What is in the weekly progress report?",
+      answer: "Every week, you receive a written report that highlights what your child covered that week, how they are progressing, any areas that need more practice and what comes next.",
     },
     {
       question: "Is there a long-term contract lock-in or subscription requirement?",

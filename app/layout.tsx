@@ -10,7 +10,7 @@ import "@fontsource-variable/plus-jakarta-sans/wght.css";
 export const metadata: Metadata = {
   title: "Schoolhelphub — Live Online Tutoring | UK · USA · Canada · Nigeria · UAE",
   description:
-    "Live online tutoring for children aged 4–16 in the UK, USA, Canada, Nigeria and UAE. WAEC, GCSE, 11+ and SAT prep. Qualified teachers. Written progress report after every session.",
+    "Live online tutoring for children aged 4–16 in the UK, USA, Canada, Nigeria and UAE. WAEC, GCSE, 11+ and SAT prep. Qualified teachers. Weekly written progress reports.",
   keywords: [
     "online tutoring Nigeria",
     "WAEC tutoring online",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Schoolhelphub — Expert Online Tutoring",
-    description: "Live tutoring · Written report after every session · Ages 4–16 · UK · USA · Canada · Nigeria · UAE",
+    description: "Live tutoring · Weekly progress reports · Ages 4–16 · UK · USA · Canada · Nigeria · UAE",
     type: "website",
   },
   icons: {

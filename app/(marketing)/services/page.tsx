@@ -24,7 +24,7 @@ export default function ServicesPage() {
   const deliveryFeatures = [
     { title: "Custom Mapping", desc: "We synchronize directly with your child's specific current school syllabus and exam board requirements.", icon: "🗺️" },
     { title: "Adaptive Progression", desc: "No generic worksheets. Lessons dynamically scale in difficulty based on continuous session metrics.", icon: "📈" },
-    { title: "Immediate Feedback Loop", desc: "Comprehensive micro-analytics and accountability logs are sent straight to your device within 15 minutes.", icon: "⚡" },
+    { title: "Weekly Progress Reports", desc: "Every week, parents receive a written report on what was covered, progress made and next steps.", icon: "📋" },
   ];
 
   return (

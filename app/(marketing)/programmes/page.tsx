@@ -45,7 +45,7 @@ const groupFeatures = [
   "Maximum six students per class",
   "Live, interactive online lessons",
   "Learn alongside peers at a similar level",
-  "Written lesson feedback for parents",
+  "A written progress report for parents every week",
   "Morning, afternoon and evening timetables",
 ];
 
@@ -54,7 +54,7 @@ const oneToOneFeatures = [
   "A lesson plan built around your child's pace and goals",
   "Any subject, including 11+, SATs, GCSE, IGCSE and WAEC",
   "A schedule that fits your family, in any time zone",
-  "Detailed written feedback after lessons",
+  "A detailed written progress report every week",
 ];
 
 const comparison = [
