@@ -1,10 +1,10 @@
-# SchoolhelpHub
+# Schoolhelphub
 
 A premium online tutoring platform connecting families with qualified tutors across Nigeria, the United Kingdom, and beyond.
 
 ## 🌍 Overview
 
-SchoolhelpHub helps children aged **5–16** succeed through live online lessons delivered by experienced tutors following a structured teaching standard.
+Schoolhelphub helps children aged **5–16** succeed through live online lessons delivered by experienced tutors following a structured teaching standard.
 
 Our programmes cover:
 
@@ -55,7 +55,7 @@ Every lesson includes a written progress report so parents always know how their
 Clone the repository
 
 ```bash
-git clone https://github.com/Miss-presh/schoolhelphub-latest.git
+git clone https://github.com/Miss-presh/Schoolhelphub-latest.git
 ```
 
 Install dependencies
@@ -88,12 +88,12 @@ styles/
 
 ## 📞 Contact
 
-Website: https://schoolhelphub.com
+Website: https://Schoolhelphub.com
 
-Email: info@schoolhelphub.com
+Email: info@Schoolhelphub.com
 
 WhatsApp: +234 704 352 3556
 
 ---
 
-© SchoolhelpHub. All Rights Reserved.
+© Schoolhelphub. All Rights Reserved.

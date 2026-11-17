@@ -43,24 +43,6 @@ const standards = [
   },
 ];
 
-const values = [
-  {
-    icon: "📋",
-    title: "A Written Report Every Week",
-    desc: "Each week you receive a written report covering what your child learned that week, how they are getting on and what to focus on next. You are never left guessing.",
-  },
-  {
-    icon: "👩🏾‍🏫",
-    title: "Qualified Nigerian & UK Teachers",
-    desc: "All tutors hold a university degree and teaching certification. Many are former school teachers with hands-on experience in WAEC, GCSE, 11+ and NECO.",
-  },
-  {
-    icon: "🎯",
-    title: "Curriculum-Aligned, Exam-Focused",
-    desc: "Every session maps directly to the syllabus your child follows. No generic content, only targeted preparation for the real exams that shape their future.",
-  },
-];
-
 export default function AboutPage() {
   return (
     <div className="bg-brand-cream text-brand-textNearBlack font-sans antialiased selection:bg-brand-yellow selection:text-brand-deepGreen">
@@ -91,7 +73,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                SchoolhelpHub was created to change that.
+                Schoolhelphub was created to change that.
               </p>
 
               <p>
@@ -199,31 +181,7 @@ export default function AboutPage() {
 
       </section>
 
-      {/* ── Values ── */}
-      <section className="py-20 lg:py-24 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-xl mx-auto mb-12 space-y-3">
-            <span className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-midGreen bg-brand-lightGreen px-4 py-1.5 rounded-full border border-brand-green/10">
-              <span className="w-4 h-px bg-brand-midGreen" />
-              What We Stand For
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-deepGreen">
-              Our <em className="italic text-brand-midGreen">Three Promises</em>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {values.map((v, i) => (
-              <div key={i} className="bg-brand-faintGreen border border-brand-lightGreen/70 p-8 rounded-2xl hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl mb-5 shadow-sm border border-brand-lightGreen">
-                  {v.icon}
-                </div>
-                <h3 className="font-serif text-lg font-bold text-brand-deepGreen mb-2">{v.title}</h3>
-                <p className="text-brand-mutedSage text-sm font-light leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  
 
       <section className="py-24 bg-white px-4 sm:px-6 lg:px-8">
 
@@ -232,7 +190,7 @@ export default function AboutPage() {
           <div className="text-center mb-16">
 
             <span className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-midGreen bg-brand-lightGreen px-4 py-1.5 rounded-full border border-brand-green/10">
-              SchoolhelpHub Impact
+              Schoolhelphub Impact
             </span>
 
             <h2 className="mt-6 font-serif text-4xl font-bold text-brand-deepGreen">
